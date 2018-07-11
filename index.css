@@ -1,0 +1,61 @@
+*{
+	box-sizing: border-box;
+}
+body{
+	font-family: 'Open Sans', sans-serif;
+}
+#meuCalendario{
+	background: #ebebeb;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	width: 210px;
+	padding: 10px;
+	margin: 0 auto;
+	border-radius: 5px;
+}
+#areaDias, #areaBtn{
+	width: 189px;
+}
+#areaBtn{
+	margin: 5px 0px;
+}
+.flexwrap{
+	display: flex; /* pai vira flex */
+	flex-wrap: wrap;
+}
+.dia{
+	padding: 2px 0px;
+	margin: 1px;
+	text-align: center;
+	height: 25px;
+	width: 25px;
+	background: white;
+	cursor: default;
+}
+.dia:hover{
+	background: rgb(228, 220, 220);
+}
+.dia.active{
+	background: #5697ff;
+}
+.dia.cinza{
+	background: #ddc6c6;
+}
+#labelCalendario{
+	float: right;
+}
+.cabecalhoDia{
+	border: unset;
+	border-bottom: 1px solid black;
+	background: transparent;
+}
+.cabecalhoDia:hover{
+	background: transparent;
+}
+button{
+	background: white;
+	border: 1px solid rgb(228, 220, 220);
+	outline-color: rgb(128, 128, 128);
+}
+button:hover{
+	border-top: 1px solid black;
+}
