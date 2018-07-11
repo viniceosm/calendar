@@ -14,7 +14,8 @@ const Calendario = (function () {
 			this.adicionaEventoAosBotoes();
 			this.mostraData();
 
-			callback();
+			if (typeof callback === 'function')
+				callback();
 		}
 
 		montaDias() {
