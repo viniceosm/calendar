@@ -7,13 +7,13 @@ body{
 #meuCalendario{
 	background: #ebebeb;
 	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-	width: 210px;
+	width: 300px;
 	padding: 10px;
 	margin: 0 auto;
 	border-radius: 5px;
 }
 #areaDias, #areaBtn{
-	width: 189px;
+	width: 100%;
 }
 #areaBtn{
 	margin: 5px 0px;
@@ -26,8 +26,8 @@ body{
 	padding: 2px 0px;
 	margin: 1px;
 	text-align: center;
-	height: 25px;
-	width: 25px;
+	height: 38px;
+	width: 38px;
 	background: white;
 	cursor: default;
 }
@@ -58,4 +58,21 @@ button{
 }
 button:hover{
 	border-top: 1px solid black;
+}
+
+
+@media only screen and (min-width: 600px) {
+	/* For tablets: */
+	#meuCalendario{
+		width: 210px;
+	}
+	.dia{
+		height: 25px;
+		width: 25px;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	/* For desktop: */
+
 }
