@@ -1,0 +1,168 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+<script>
+	const Calendario = (function() {
+		let $ = document.querySelector.bind(document);
+
+		class CalendarioPrivado {
+			constructor(_selectorCalendario, _selectorMesAnterior, _selectorProximoMes, _selectorLabelCalendario) {
+				Object.assign(this, {
+					_selectorCalendario,
+					_selectorMesAnterior,
+					_selectorProximoMes,
+					_selectorLabelCalendario,
+					_data: new Date()
+				});
+
+				this.adicionaEventoAosBotoes();
+				this.mostraData();
+			}
+
+			montaDias() {
+				$(this._selectorCalendario).innerHTML = '';
+
+				let diaSemana = this.getSemanaPrimeiroDiaMes(this._data);
+				let ultimoDia = this.getUltimoDiaMes(this._data);
+
+
+				let diaMesAnterior = new Date(this._data.getFullYear(), this._data.getMonth(), 1);
+				diaMesAnterior.setDate(diaMesAnterior.getDate() - diaSemana);
+
+				for (let i = 0; i < diaSemana; i++) {
+					$(this._selectorCalendario).innerHTML += `<div class="dia cinza">${diaMesAnterior.getDate() + i}</div>`;
+				}
+
+				for (let i = 1; i <= ultimoDia; i++) {
+					$(this._selectorCalendario).innerHTML += `<div class="dia">${i}</div>`;
+				}
+			}
+
+			mostraData() {
+				let dia = this._data.getDate().toString().padStart(2, '0');
+				let mes = (this._data.getMonth() + 1).toString().padStart(2, '0');
+				let ano = this._data.getFullYear().toString().padStart(2, '0');
+
+				$(this._selectorLabelCalendario).innerHTML = `${mes}/${ano}`;
+
+				this.montaDias();
+			}
+
+			mesAnterior() {
+				this._data.setMonth(this._data.getMonth() - 1);
+				this.mostraData();
+			}
+
+			proximoMes() {
+				this._data.setMonth(this._data.getMonth() + 1);
+				this.mostraData();
+			}
+
+			adicionaEventoAosBotoes() {
+				let self = this;
+				$(this._selectorMesAnterior).addEventListener('click', function() { self.mesAnterior(); });
+				$(this._selectorProximoMes).addEventListener('click', function () { self.proximoMes(); });
+			}
+
+			getUltimoDiaMes(data) {
+				let dataNova = new Date(data.getFullYear(), (data.getMonth() + 1), 1);
+				dataNova.setDate(dataNova.getDate() - 1);
+				return dataNova.getDate();
+			}
+
+			getSemanaPrimeiroDiaMes(data) {
+				let dataNova = new Date(data.getFullYear(), (data.getMonth()), 1);
+				return dataNova.getDay();
+			}
+		}
+
+		return CalendarioPrivado;
+	})();
+</script>
+
+<style>
+	*{
+		box-sizing: border-box;
+	}
+	body{
+		font-family: 'Open Sans', sans-serif;
+	}
+	#meuCalendario{
+		background: #ebebeb;
+		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+		width: 210px;
+		padding: 10px;
+		margin: 0 auto;
+		border-radius: 5px;
+	}
+	#areaDias, #areaBtn{
+		width: 189px;
+	}
+	#areaBtn{
+		margin: 5px 0px;
+	}
+	.flexwrap{
+		display: flex; /* pai vira flex */
+		flex-wrap: wrap;
+	}
+	.dia{
+		padding: 2px 0px;
+		margin: 1px;
+		text-align: center;
+		height: 25px;
+		width: 25px;
+		background: white;
+		cursor: default;
+	}
+	.dia:hover{
+		background: rgb(228, 220, 220);
+	}
+	.dia.cinza{
+		background: #ddc6c6;
+	}
+	#labelCalendario{
+		float: right;
+	}
+	.cabecalhoDia{
+		border: unset;
+		border-bottom: 1px solid black;
+		background: transparent;
+	}
+	.cabecalhoDia:hover{
+		background: transparent;
+	}
+	button{
+		background: white;
+		border: 1px solid rgb(228, 220, 220);
+		outline-color: rgb(128, 128, 128);
+	}
+	button:hover{
+		border-top: 1px solid black;
+	}
+</style>
+
+<body>
+	<div id="meuCalendario">
+		<div id="areaBtn">
+			<button id="mesAnterior"> < </button>
+			<button id="proximoMes"> > </button>
+			<span id="labelCalendario"></span>
+		</div>
+
+		<div class="flexwrap">
+			<div class="dia cabecalhoDia">D</div>
+			<div class="dia cabecalhoDia">S</div>
+			<div class="dia cabecalhoDia">T</div>
+			<div class="dia cabecalhoDia">Q</div>
+			<div class="dia cabecalhoDia">Q</div>
+			<div class="dia cabecalhoDia">S</div>
+			<div class="dia cabecalhoDia">S</div>
+		</div>
+		<div id="areaDias" class="flexwrap"></div>
+	</div>
+</body>
+
+<script>
+	var meuCalendario = new Calendario('#areaDias', '#mesAnterior', '#proximoMes', '#labelCalendario');
+</script>
