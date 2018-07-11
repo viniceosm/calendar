@@ -10,8 +10,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link rel="stylesheet" href="index.css">
 
-	<script src="index.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="index.js"></script>
 </head>
 <body>
 	<div id="meuCalendario">
@@ -36,12 +36,7 @@
 
 <script>
 	var meuCalendario = new Calendario('#areaDias', '#mesAnterior', '#proximoMes', '#labelCalendario', function () {
-		$('.dia').on('mousedown', function (e) {
-			$('.dia').each(function(i, e) {
-				$(this).removeClass('active');
-			});
-			$(this).toggleClass('active', 'true');
-		});
+
 	});
 </script>
 
