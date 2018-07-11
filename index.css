@@ -55,6 +55,7 @@ button{
 	background: white;
 	border: 1px solid rgb(228, 220, 220);
 	outline-color: rgb(128, 128, 128);
+	padding: 2px 12px;
 }
 button:hover{
 	border-top: 1px solid black;
@@ -69,6 +70,9 @@ button:hover{
 	.dia{
 		height: 25px;
 		width: 25px;
+	}
+	button{
+		padding: 1px 6px;
 	}
 }
 
