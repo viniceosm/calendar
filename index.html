@@ -8,34 +8,57 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="index.css">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="index.js"></script>
 </head>
 <body>
-	<div id="meuCalendario">
-		<div id="areaBtn">
-			<button id="mesAnterior"> < </button>
-			<button id="proximoMes"> > </button>
-			<span id="labelCalendario"></span>
-		</div>
 
-		<div class="flexwrap">
-			<div class="dia cabecalhoDia">D</div>
-			<div class="dia cabecalhoDia">S</div>
-			<div class="dia cabecalhoDia">T</div>
-			<div class="dia cabecalhoDia">Q</div>
-			<div class="dia cabecalhoDia">Q</div>
-			<div class="dia cabecalhoDia">S</div>
-			<div class="dia cabecalhoDia">S</div>
+	<div class="flip-container" id="myCardFlip">
+		<div class="flipper">
+			<div class="front">
+				<div id="meuCalendario">
+					<div id="areaBtn">
+						<button id="mesAnterior"> < </button>
+						<button id="proximoMes"> > </button>
+						<span id="labelCalendario"></span>
+					</div>
+
+					<div class="flexwrap">
+						<div class="dia cabecalhoDia">D</div>
+						<div class="dia cabecalhoDia">S</div>
+						<div class="dia cabecalhoDia">T</div>
+						<div class="dia cabecalhoDia">Q</div>
+						<div class="dia cabecalhoDia">Q</div>
+						<div class="dia cabecalhoDia">S</div>
+						<div class="dia cabecalhoDia">S</div>
+					</div>
+					<div id="areaDias" class="flexwrap"></div>
+				</div>
+			</div>
+			<div class="back">
+				<div id="meuCalendario">
+					<div id="btnVoltarCalendario">
+						<i class="material-icons">
+							keyboard_backspace
+						</i>
+					</div>
+
+					<div id="dataEscolhida">1010</div>
+				</div>
+			</div>
 		</div>
-		<div id="areaDias" class="flexwrap"></div>
 	</div>
 </body>
 
 <script>
 	var meuCalendario = new Calendario('#areaDias', '#mesAnterior', '#proximoMes', '#labelCalendario');
+
+	$('#btnVoltarCalendario').click(function(){
+		$("#myCardFlip").toggleClass("flip");
+	});
 </script>
 
 </html>

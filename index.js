@@ -41,11 +41,18 @@ const Calendario = (function () {
 				qq(this._selectorCalendario).innerHTML += `<div class="dia ${active}">${i}</div>`;
 			}
 
+			let self = this;
+
 			$('.dia').on('mousedown', function (e) {
+				let mes = (self._data.getMonth() + 1).toString().padStart(2, '0');
+				let ano = self._data.getFullYear().toString().padStart(2, '0');
+
 				$('.dia').each(function (i, e) {
 					$(this).removeClass('active');
 				});
 				$(this).addClass('active', 'true');
+				$("#myCardFlip").toggleClass("flip");
+				$('#dataEscolhida').text(`${$(this).text()}/${mes}/${ano}`);
 			});
 		}
 
