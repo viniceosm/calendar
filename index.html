@@ -46,7 +46,11 @@
 						</i>
 					</div>
 
-					<div id="dataEscolhida">1010</div>
+					<div id="dataEscolhida">24/07/2018</div>
+
+					<div class="todo item" contenteditable="true" class="editable" data-placeholder="Desc Task:" id="txtNovoTask"></div>
+					<div id="listaTodo">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -59,6 +63,35 @@
 	$('#btnVoltarCalendario').click(function(){
 		$("#myCardFlip").toggleClass("flip");
 	});
+
+	var todo = [];
+
+	listaTodo();
+
+	$('#txtNovoTask').on('keyup', function(e) {
+		var code = e.which;
+		if (code === 13) {
+			adicionaTask($('#dataEscolhida').text(), $('#txtNovoTask').text());
+			$('#txtNovoTask').html('');
+			listaTodo();
+		}
+	});
+
+	function adicionaTask(data, desc) {
+		todo.push({ data, id: todo.length, desc });
+	}
+
+	function listaTodo() {
+		todoData = todo.filter(function (o) {
+			return o.data == $('#dataEscolhida').text();
+		});
+
+		var html = todoData.reduce(function (oAnt, o) {
+			return `${oAnt}<div class="todo item" contenteditable="true">${o.id} ${o.desc}</div>`;
+		}, '');
+
+		$('#listaTodo').html(html);
+	}
 </script>
 
 </html>

@@ -53,6 +53,7 @@ const Calendario = (function () {
 				$(this).addClass('active', 'true');
 				$("#myCardFlip").toggleClass("flip");
 				$('#dataEscolhida').text(`${$(this).text()}/${mes}/${ano}`);
+				listaTodo();
 			});
 		}
 

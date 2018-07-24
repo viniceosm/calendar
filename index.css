@@ -60,6 +60,29 @@ button{
 button:hover{
 	border-top: 1px solid black;
 }
+#dataEscolhida{
+	margin-bottom: 5px;
+}
+#listaTodo{
+	height: 106px;
+	overflow: auto;
+}
+.todo.item {
+	width: 100%;
+	padding: 5px 2px;
+	outline-color: rgba(0,0,0,0.25);
+}
+.todo.item:nth-child(even) {
+	background-color: #CCCCCC;
+}
+/* tr:nth-child(odd) {background: #FFF} */
+div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
+	content: attr(data-placeholder) "\00a0 ";
+	float: left;
+	margin-left: 2px;
+	color: #b3b3b3;
+}
+
 
 
 /* entire container, keeps perspective */
