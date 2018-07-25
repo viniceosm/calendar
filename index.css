@@ -60,6 +60,9 @@ button{
 button:hover{
 	border-top: 1px solid black;
 }
+button i {
+	font-size: 15px !important;
+}
 #dataEscolhida{
 	margin-bottom: 5px;
 }
@@ -151,7 +154,7 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 @media only screen and (min-width: 768px) {
 	/* For desktop: */
 	#meuCalendario {
-		height: 215px;
+		height: 247px;
 	}
 
 }

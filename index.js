@@ -43,7 +43,7 @@ const Calendario = (function () {
 
 			let self = this;
 
-			$('.dia').on('mousedown', function (e) {
+			$('.dia:not(.cabecalhoDia)').on('mousedown', function (e) {
 				let mes = (self._data.getMonth() + 1).toString().padStart(2, '0');
 				let ano = self._data.getFullYear().toString().padStart(2, '0');
 
