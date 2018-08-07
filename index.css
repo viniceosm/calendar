@@ -94,8 +94,8 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 	perspective: 1000px;
 }
 .flip-container, .front, .back {
-	width: 320px;
-	height: 320px;
+	width: 80vw;
+	height: 80vw;
 	margin: 0 auto;
 }
 /* flip speed goes here */
@@ -130,6 +130,10 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 
 @media only screen and (min-width: 600px) {
 	/* For tablets: */
+	.flip-container, .front, .back {
+		height: 500px;
+		width: 500px;
+	}
 	button{
 		padding: 1px 6px;
 	}
@@ -138,8 +142,12 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 @media only screen and (min-width: 768px) {
 	/* For desktop: */
 	#meuCalendario {
-		height: 300px;
-		width: 300px;
+		height: 500px;
+		width: 500px;
+	}
+	.flip-container, .front, .back {
+		height: 500px;
+		width: 500px;
 	}
 	.dia {
 		width: 13.5770%;
