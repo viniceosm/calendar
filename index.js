@@ -29,7 +29,7 @@ const Calendario = (function () {
 			diaMesAnterior.setDate(diaMesAnterior.getDate() - diaSemana);
 
 			for (let i = 0; i < diaSemana; i++) {
-				qq(this._selectorCalendario).innerHTML += `<div class="dia cinza">${diaMesAnterior.getDate() + i}</div>`;
+				qq(this._selectorCalendario).innerHTML += `<div class="dia cinza"><span class="num">${diaMesAnterior.getDate() + i}</span></div>`;
 			}
 
 			for (let i = 1; i <= ultimoDia; i++) {
@@ -38,10 +38,11 @@ const Calendario = (function () {
 					active = 'active';
 				}
 
-				qq(this._selectorCalendario).innerHTML += `<div class="dia ${active}">${i}</div>`;
+				qq(this._selectorCalendario).innerHTML += `<div class="dia ${active}"><span class="num">${i}</span></div>`;
 			}
 
 			let self = this;
+			notificacaoTodo();
 
 			$('.dia:not(.cabecalhoDia)').on('mousedown', function (e) {
 				let mes = (self._data.getMonth() + 1).toString().padStart(2, '0');
@@ -52,7 +53,7 @@ const Calendario = (function () {
 				});
 				$(this).addClass('active', 'true');
 				$("#myCardFlip").toggleClass("flip");
-				$('#dataEscolhida').text(`${$(this).text()}/${mes}/${ano}`);
+				$('#dataEscolhida').text(`${$(this).find('.num').text()}/${mes}/${ano}`);
 				listaTodo();
 			});
 		}

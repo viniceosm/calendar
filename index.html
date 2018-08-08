@@ -12,6 +12,11 @@
 	<link rel="stylesheet" href="index.css">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script>
+		var todo = [];
+	</script>
+
 	<script src="index.js"></script>
 </head>
 <body>
@@ -68,21 +73,26 @@
 		$("#myCardFlip").toggleClass("flip");
 	});
 
-	var todo = [];
-
 	listaTodo();
 
 	$('#txtNovoTask').on('keyup', function(e) {
 		var code = e.which;
-		if (code === 13) {
-			adicionaTask($('#dataEscolhida').text(), $('#txtNovoTask').text());
+		if (code === 13 && !e.shiftKey && $('#txtNovoTask').text().trim() !== '') {
+			adicionaTask($('#dataEscolhida').text(), textbr($('#txtNovoTask')));
 			$('#txtNovoTask').html('');
 			listaTodo();
+		}
+	});
+	$('#txtNovoTask').on('keypress', function(e) {
+		var code = e.which;
+		if (code === 13 && $('#txtNovoTask').text().trim() === '') {
+			$('#txtNovoTask').text('');
 		}
 	});
 
 	function adicionaTask(data, desc) {
 		todo.push({ data, id: todo.length, desc });
+		notificacaoTodo();
 	}
 
 	function listaTodo() {
@@ -91,10 +101,32 @@
 		});
 
 		var html = todoData.reduce(function (oAnt, o) {
-			return `${oAnt}<div class="todo item" contenteditable="true">${o.id} ${o.desc}</div>`;
+			return `${oAnt}<div class="todo item" contenteditable="true">${o.desc}</div>`;
 		}, '');
 
 		$('#listaTodo').html(html);
+	}
+
+	function notificacaoTodo() {
+		// insere uma div na div do dia
+
+		todoData = todo.filter(function (o) {
+			return o.data == $('#dataEscolhida').text();
+		});
+
+		$('.dia:not(.cabecalhoDia)').each((i, e) => {
+			todoDataComDia = todoData.filter(function (o) {
+				return o.data == $(e).find('.num').text() + '/' + $('#labelCalendario').text();
+			});
+
+			if(todoDataComDia.length > 0) {
+				if ($(e).find('.tem-todo').length == 0) {
+					$(e).append('<div class="tem-todo">'+ todoDataComDia.length +'</div>');
+				} else {
+					$(e).find('.tem-todo').text(todoDataComDia.length);
+				}
+			}
+		});
 	}
 
 	$(document).on('change keydown keypress input', 'div[data-placeholder]', function () {
@@ -104,6 +136,10 @@
 			delete (this.dataset.divPlaceholderContent);
 		}
 	});
+
+	function textbr(element) {
+		return $(element).html().replace(/<(?!br\s*\/?)[^>]+>/g, '');
+	}
 
 </script>
 

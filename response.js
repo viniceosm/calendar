@@ -4,15 +4,29 @@
 
   function testMedias() {
     if (xDesktop.matches) {
-      respDiaDesktop();
+      respDiaDesktop()
     } else if (xTablets.matches) {
-      respDiaDesktop();
+      respDiaDesktop()
     } else {
-      respDiaMobile();
+      respDiaMobile()
     }
   }
 
   testMedias()
+
+  // seleciona o nó alvo
+  var target = document.querySelector('body')
+
+  // cria uma nova instância de observador
+  var observer = new MutationObserver(function (mutations) {
+    testMedias()
+  })
+
+  // configuração do observador:
+  var config = { attributes: true, childList: true, characterData: true, subtree: true }
+
+  // passar o nó alvo, bem como as opções de observação
+  observer.observe(target, config)
 
   for (var x of [xTablets, xDesktop]) {
     x.addListener(testMedias)
